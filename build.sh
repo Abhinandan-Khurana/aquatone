@@ -43,6 +43,11 @@ build_macos_amd64() {
   GOOS=darwin GOARCH=amd64 go build -o aquatone ..
 }
 
+build_macos_arm64() {
+  echo "[*] Building darwin/arm64 ..."
+  GOOS=darwin GOARCH=arm64 go build -o aquatone ..
+}
+
 build_windows_amd64() {
   echo "[*] Building windows/amd64 ..."
   GOOS=windows GOARCH=amd64 go build -o aquatone.exe ..
@@ -55,6 +60,7 @@ cd $BUILD_FOLDER
 build_linux_amd64 && create_archive aquatone_linux_amd64_$VERSION.zip
 build_linux_arm64 && create_archive aquatone_linux_arm64_$VERSION.zip
 build_macos_amd64 && create_archive aquatone_macos_amd64_$VERSION.zip
+build_macos_arm64 && create_archive aquatone_macos_arm64_$VERSION.zip
 build_windows_amd64 && create_exe_archive aquatone_windows_amd64_$VERSION.zip
 shasum -a 256 * > checksums.txt
 
